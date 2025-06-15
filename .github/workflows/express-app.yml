@@ -12,6 +12,8 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
@@ -25,7 +27,7 @@ jobs:
     - name: Build and push Docker image
       uses: docker/build-push-action@v5
       with:
-        context: ./leovuonnala/material-applications/express-app
-        file: ./leovuonnala/material-applications/express-app/Dockerfile
+        context: ./express-app
+        file: ./express-app/Dockerfile
         push: true
         tags: ${{ secrets.DOCKER_USERNAME }}/express-app:latest
